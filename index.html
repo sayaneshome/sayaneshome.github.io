@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sayane Shome — Computational Biologist</title>
+<meta name="description" content="Sayane Shome, Ph.D. — computational biologist &amp; bioinformatics scientist. Machine learning, single-cell &amp; multi-omics, generative AI. Code portfolio, projects, and publications.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AC%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0B0D18; --bg2:#101324; --card:#16192B; --card2:#1B1F32; --line:#282D45;
+  --fg:#EAEBF4; --muted:#9AA0BC; --faint:#5F6488;
+  --teal:#8E8CF5; --violet:#B08CF2; --green:#6E9BF5; --amber:#C7A2E6;
+  --accent:var(--teal);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  --max:1080px;
+}
+:root[data-theme="light"]{
+  --bg:#F5F5FC; --bg2:#FFFFFF; --card:#FFFFFF; --card2:#FAFAFF; --line:#E7E5F2;
+  --fg:#16172A; --muted:#565C78; --faint:#8A90AC;
+  --teal:#6A5AE0; --violet:#8A5CE0; --green:#3E6FD6; --amber:#9A6FD0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-weight:700;letter-spacing:-.01em}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:26px;align-items:center;font-size:.9rem}
+.navlinks a{color:var(--muted)} .navlinks a:hover{color:var(--fg)}
+.tglbtn{font-family:var(--mono);font-size:.75rem;color:var(--muted);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:.35rem .7rem;cursor:pointer}
+.tglbtn:hover{color:var(--fg)}
+@media(max-width:680px){.navlinks a:not(.tglbtn){display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#field{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero .wrap{position:relative;padding:110px 24px 90px}
+.eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.hero h1{font-size:clamp(2.4rem,6.5vw,4.2rem);line-height:1.02;letter-spacing:-.025em;margin:0;font-weight:800}
+.hero .sub{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--muted);margin:20px 0 0;max-width:44ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{font-family:var(--mono);font-size:.86rem;padding:.7rem 1.15rem;border-radius:10px;border:1px solid var(--line);
+  color:var(--fg);background:var(--card);transition:.15s}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn.primary{background:var(--accent);color:#0B0D18;border-color:var(--accent);font-weight:600}
+.btn.primary:hover{color:#0B0D18;filter:brightness(1.08)}
+.stats{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.stat b{display:block;font-size:1.5rem;letter-spacing:-.02em}
+.stat span{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+
+/* sections */
+section{padding:80px 0;border-bottom:1px solid var(--line)}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
+.shead .num{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+.shead h2{font-size:clamp(1.5rem,3.5vw,2.1rem);margin:0;letter-spacing:-.02em;font-weight:750}
+.shead .line{flex:1;height:1px;background:var(--line)}
+.lead{max-width:64ch;color:var(--muted);font-size:1.04rem;margin:-14px 0 34px}
+.lead b{color:var(--fg);font-weight:600}
+
+/* projects */
+.pgroup{margin-top:44px}
+.pgroup:first-of-type{margin-top:0}
+.gsub{display:flex;align-items:center;gap:14px;margin:0 0 20px}
+details.pgroup summary.gsub{cursor:pointer;list-style:none;user-select:none;padding:4px 0}
+details.pgroup summary.gsub::-webkit-details-marker{display:none}
+details.pgroup summary.gsub:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+.chev{font-family:var(--mono);color:var(--faint);font-size:1.15rem;line-height:1;transition:transform .18s ease}
+details.pgroup[open] .chev{transform:rotate(90deg)}
+details.pgroup summary.gsub:hover .chev{color:var(--accent)}
+details.pgroup summary.gsub:hover .glabel{filter:brightness(1.18)}
+.glabel{font-family:var(--mono);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.gcount{color:var(--faint);font-size:.7rem;white-space:nowrap}
+.gline{flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.card .body .tag{align-self:flex-start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+.card:hover{border-color:var(--catc);transform:translateY(-3px)}
+.card.cat-ml{--catc:var(--teal)} .card.cat-gen{--catc:var(--violet)}
+.card.cat-omics{--catc:var(--green)} .card.cat-ms{--catc:var(--amber)}
+.card.cat-tool{--catc:var(--green)}
+.thumb{display:block;aspect-ratio:800/460;background:#0E1218;border-bottom:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:11px;flex:1}
+.chiprow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--catc);
+  border:1px solid var(--catc);border-radius:5px;padding:.12rem .4rem;opacity:.9}
+.chip{font-family:var(--mono);font-size:.68rem;color:var(--muted);background:var(--card2);
+  border:1px solid var(--line);border-radius:5px;padding:.12rem .45rem}
+.card h3{margin:2px 0 0;font-size:1.15rem;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);font-size:.92rem;flex:1}
+.ghlink{font-size:.74rem;color:var(--faint)} .ghlink:hover{color:var(--catc)}
+details.code{border-top:1px solid var(--line);margin-top:2px}
+details.code summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0 2px;font-size:.72rem;color:var(--muted)}
+details.code summary::-webkit-details-marker{display:none}
+details.code summary:hover{color:var(--catc)}
+details.code .path{color:var(--faint);font-size:.66rem}
+pre.hl{margin:10px 0 0;background:var(--bg2);border:1px solid var(--line);border-radius:9px;
+  padding:14px;overflow-x:auto;font-family:var(--mono);font-size:.76rem;line-height:1.55;max-height:340px}
+pre.hl code{white-space:pre}
+.tok-c{color:var(--faint);font-style:italic} .tok-s{color:var(--green)}
+.tok-k{color:var(--violet)} .tok-n{color:var(--amber)} .tok-f{color:var(--teal)}
+
+/* publications */
+ol.pubs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.pub{display:grid;grid-template-columns:2rem 1fr;gap:14px;align-items:baseline}
+.pn{color:var(--accent);font-size:.78rem;padding-top:2px}
+.pt{font-size:1.02rem;letter-spacing:-.005em}
+.pv{color:var(--muted);font-size:.82rem;margin-top:3px}
+.venue{color:var(--fg)}
+.natflag{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;color:var(--teal);
+  border:1px solid var(--teal);border-radius:4px;padding:.05rem .35rem;margin-left:.5rem;vertical-align:.12em}
+.scholar{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top:24px}
+.scholar b{color:var(--fg)}
+
+/* experience */
+.xrow{display:grid;grid-template-columns:13rem 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.xrow:first-child{border-top:0}
+.xmeta{display:flex;flex-direction:column;gap:3px;font-size:.82rem}
+.xwhen{color:var(--accent)} .xorg{color:var(--muted)}
+.xbody h3{margin:0;font-size:1.1rem} .xdept{color:var(--muted);font-size:.9rem;margin:2px 0 8px}
+.xbody p{margin:0;color:var(--fg)}
+
+/* skills */
+.srow{display:grid;grid-template-columns:14rem 1fr;gap:24px;padding:16px 0;border-top:1px solid var(--line)}
+.srow:first-child{border-top:0}
+.sk{font-size:.82rem;letter-spacing:.02em;color:var(--muted)} .sv{color:var(--fg)}
+
+/* contact / footer */
+.contact{text-align:center;padding:90px 0}
+.contact h2{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.02em;margin:0 0 10px}
+.contact p{color:var(--muted);margin:0 auto 28px;max-width:40ch}
+footer{padding:30px 0;border-top:1px solid var(--line);font-family:var(--mono);font-size:.75rem;
+  color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+@media(max-width:680px){
+  .xrow,.srow{grid-template-columns:1fr;gap:8px}
+  section{padding:60px 0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto} #field{display:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Sayane <span>Shome</span></a>
+    <nav class="navlinks">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+      <button class="tglbtn" id="tgl" aria-label="Toggle theme">◐ theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <canvas id="field"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">Computational Biologist · Bioinformatics Scientist</p>
+    <h1>Turning complex biology<br>into code that runs.</h1>
+    <p class="sub">Machine learning, single-cell &amp; multi-omics, and generative AI — built as reproducible, interpretable pipelines on real genomic and clinical data.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn" href="https://github.com/sayaneshome" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/sayaneshome" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="mailto:sayaneshome1@gmail.com">Email</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>20+</b><span>Publications</span></div>
+      <div class="stat"><b>418</b><span>Citations</span></div>
+      <div class="stat"><b>11</b><span>h-index</span></div>
+      <div class="stat"><b>10+</b><span>Public repos</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<section id="projects"><div class="wrap">
+  <div class="shead"><span class="num">01</span><h2>Projects</h2><span class="line"></span></div>
+  <p class="lead">Ten public repositories, grouped by theme so it's clear what I build: <b>machine learning &amp; generative AI</b>, <b>single-cell &amp; multi-omics pipelines</b>, and the <b>analysis code behind my publications</b>. Every card links to the repo and expands a real code excerpt.</p>
+  
+  <details class="pgroup">
+    <summary class="gsub"><span class="chev" aria-hidden="true">›</span><span class="glabel">Machine Learning &amp; Generative AI</span><span class="gcount mono">05 projects</span><span class="gline"></span></summary>
+    <div class="grid">
+      <article class="card cat-ml">
+        <a class="thumb" href="https://github.com/sayaneshome/ai-bioinformatics-portfolio" target="_blank" rel="noopener">
+          <img src="assets/img/projects/ai-bioinformatics-portfolio.svg" alt="AI Bioinformatics Portfolio thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">ML</span>
+          <h3>AI Bioinformatics Portfolio</h3>
+          <p>A curated portfolio of my example work: single-cell RNA-seq and RNA-velocity (Scanpy), bulk RNA-seq differential expression with interaction terms, multi-omics correlation networks, and a diffusion-model demo — plus links to deployed apps.</p>
+          <div class="chiprow"><span class="chip">scRNA-seq</span><span class="chip">Bulk RNA-seq</span><span class="chip">Networks</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">notebooks/Notebook03.ipynb</span></summary>
+        <pre class="hl" data-lang="r"><code>library(DESeq2)
+library(tibble) # For tidy data handling
+
+# Assuming &#x27;metadata&#x27; is your metadata DataFrame and &#x27;countData1&#x27; is your count matrix
+# First, make sure &#x27;countData1&#x27; has the correct row names (genes) and column names (samples)
+rownames(countData1) &lt;- countData1$Gene_name
+countData1 &lt;- countData1[, -1] # Remove the &#x27;Gene_name&#x27; column
+
+# Make sure the &#x27;metadata&#x27; DataFrame is correctly ordered to match the samples in &#x27;countData1&#x27;
+# The order should match exactly with the column names of &#x27;countData1&#x27;
+metadata_ordered &lt;- metadata[match(colnames(countData1), metadata$id), ]
+
+# Create a DESeqDataSet
+# Assuming &#x27;metadata_ordered&#x27; now has the columns in the correct order: &#x27;sample&#x27;, &#x27;id&#x27;, &#x27;genotype&#x27;, &#x27;condition&#x27;
+# The &#x27;design&#x27; formula you have can stay the same
+dds &lt;- DESeqDataSetFromMatrix(countData = countData1,
+                              colData = DataFrame(metadata_ordered),
+                              design = ~ genotype + condition + genotype:condition)
+
+# At this point, &#x27;dds&#x27; should have &#x27;genotype&#x27; and &#x27;condition&#x27; correctly aligned
+# You can proceed with your DESeq2 analysis workflow</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/ai-bioinformatics-portfolio" target="_blank" rel="noopener">github.com/sayaneshome/ai-bioinformatics-portfolio &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-gen">
+        <a class="thumb" href="https://github.com/sayaneshome/Generative_AI_modelling_samples_codes" target="_blank" rel="noopener">
+          <img src="assets/img/projects/Generative_AI_modelling_samples_codes.svg" alt="Generative AI Model Samples thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">GEN-AI</span>
+          <h3>Generative AI Model Samples</h3>
+          <p>Two deep-learning pipelines for neonatal chest X-rays: a BLIP vision–language model (ViT + text transformer) fine-tuned for gestational-age prediction and report generation, and a Stable-Diffusion UNet for text-conditioned X-ray synthesis with mask-guided supervision.</p>
+          <div class="chiprow"><span class="chip">BLIP / ViT</span><span class="chip">Stable Diffusion</span><span class="chip">PyTorch</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">GA_prediction_using_medblip_finetuning.py</span></summary>
+        <pre class="hl" data-lang="python"><code>    def evaluate(self, *args, **kwargs):
+        metrics = super().evaluate(*args, **kwargs)
+        lr = self.optimizer.param_groups[0][&quot;lr&quot;]
+        self.log({&quot;learning_rate&quot;: lr})
+        if &quot;eval_loss&quot; in metrics:
+            self.lr_scheduler.step(metrics[&quot;eval_loss&quot;])
+        return metrics
+
+# ── Text Metrics ──────────────────────────────────────────────────────────────
+def compute_metrics(eval_pred):
+    preds, labels = eval_pred
+    decoded_preds  = processor.tokenizer.batch_decode(preds, skip_special_tokens=True)
+    labels_clean   = np.where(labels != -100, labels, processor.tokenizer.pad_token_id)
+    decoded_labels = processor.tokenizer.batch_decode(labels_clean, skip_special_tokens=True)
+
+    bleu_res  = bleu_metric.compute(predictions=decoded_preds, references=decoded_labels)
+    rouge_res = rouge_metric.compute(predictions=decoded_preds, references=decoded_labels)
+    bert_res  = bertscore_metric.compute(predictions=decoded_preds,
+                                         references=decoded_labels, lang=&quot;en&quot;)
+
+    tp=fp=fn=0
+    for p,t in zip(decoded_preds, decoded_labels):
+        pents = {e.text.lower() for e in nlp(p).ents}
+        tents = {e.text.lower() for e in nlp(t).ents}</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/Generative_AI_modelling_samples_codes" target="_blank" rel="noopener">github.com/sayaneshome/Generative_AI_modelling_samples_codes &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-ml">
+        <a class="thumb" href="https://github.com/sayaneshome/protein-contactmap-ml" target="_blank" rel="noopener">
+          <img src="assets/img/projects/protein-contactmap-ml.svg" alt="Protein Contact-Map ML thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">ML</span>
+          <h3>Protein Contact-Map ML</h3>
+          <p>A 1D convolutional neural network that classifies protein residue–residue contact-map categories (10 classes) from tessellation-derived geometric features.</p>
+          <div class="chiprow"><span class="chip">Keras</span><span class="chip">1D CNN</span><span class="chip">Proteins</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">CNN_test1_shuffle_acc_precision.py</span></summary>
+        <pre class="hl" data-lang="python"><code>neurons = random.randint(10,50)
+def precision(y_true, y_pred): #taken from old keras source code
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+def convolutional_neural_network(x, y):
+    print(&quot;Hyper-parameter values:\n&quot;)
+    print(&#x27;Momentum Rate =&#x27;,momentum_rate,&#x27;\n&#x27;)
+    print(&#x27;learning rate =&#x27;,learning_rate,&#x27;\n&#x27;)
+    print(&#x27;Number of neurons =&#x27;,neurons,&#x27;\n&#x27;)
+
+    startTime = time.clock()
+    model = Sequential()
+    model.add(Conv1D(filters=64,input_shape=train_X.shape[1:],activation=&#x27;relu&#x27;,kernel_size = 3))
+    model.add(Flatten())
+    model.add(Dense(neurons,activation=&#x27;relu&#x27;)) # first hidden layer
+    model.add(Dense(neurons, activation=&#x27;relu&#x27;)) # second hidden layer
+    model.add(Dense(neurons, activation=&#x27;relu&#x27;))
+    model.add(Dense(neurons, activation=&#x27;relu&#x27;))
+    model.add(Dense(10, activation=&#x27;softmax&#x27;))
+    sgd = optimizers.SGD(lr=learning_rate, decay=1e-6, momentum=momentum_rate, nesterov=True)
+    model.compile(loss=&#x27;categorical_crossentropy&#x27;, optimizer=sgd, metrics=[&#x27;accuracy&#x27;,tensorflow.keras.metrics.Precision()])</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/protein-contactmap-ml" target="_blank" rel="noopener">github.com/sayaneshome/protein-contactmap-ml &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-ml">
+        <a class="thumb" href="https://github.com/sayaneshome/ML_model_implementations" target="_blank" rel="noopener">
+          <img src="assets/img/projects/ML_model_implementations.svg" alt="ML Model Implementations thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">ML</span>
+          <h3>ML Model Implementations</h3>
+          <p>Clean implementations of core ML: a neural-net/CNN classifier and a decision tree (Python), a stacked ensemble of seven models via caretEnsemble, and a multinomial Naive Bayes text classifier on 20 Newsgroups (R).</p>
+          <div class="chiprow"><span class="chip">Python</span><span class="chip">R</span><span class="chip">ensembles</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">CNN_NNimplmenetation.py</span></summary>
+        <pre class="hl" data-lang="python"><code>momentum_rate = 0.95
+filters = 1024
+batch_size = 100
+learning_rate = 0.05
+neurons = 200
+
+def convolutional_neural_network(x, y):
+    startTime = time.clock()
+    model = Sequential()
+    model.add(Conv2D(filters, (1, 1), input_shape=(1, 1, 64), activation=&#x27;relu&#x27;))
+    model.add(Flatten())
+    model.add(Dense(neurons, activation=&#x27;relu&#x27;)) # first hidden layer
+    model.add(Dense(neurons, activation=&#x27;relu&#x27;)) # second hidden layer
+    model.add(Dense(neurons, activation=&#x27;relu&#x27;)) # third hidden layer
+  #  model.add(Dense(neurons, activation=&#x27;relu&#x27;)) #fourth hidden layer
+ #   model.add(Dense(neurons, activation=&#x27;relu&#x27;)) #fifth hidden layer
+    model.add(Dense(10, activation=&#x27;softmax&#x27;))
+    sgd = optimizers.SGD(lr=learning_rate, decay=1e-6, momentum=momentum_rate, nesterov=True)
+    model.compile(loss=&#x27;categorical_crossentropy&#x27;, optimizer=sgd, metrics=[&#x27;accuracy&#x27;])
+    model.fit(cnn_train, Y, validation_split=0.2, epochs=10, batch_size=100, verbose=0)
+    endTime = time.clock()
+    print(&quot;Time = &quot;, endTime-startTime)
+    print_statistics(model, x, y)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/ML_model_implementations" target="_blank" rel="noopener">github.com/sayaneshome/ML_model_implementations &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-ml">
+        <a class="thumb" href="https://github.com/sayaneshome/svd-ml-experiments" target="_blank" rel="noopener">
+          <img src="assets/img/projects/svd-ml-experiments.svg" alt="SVD &amp; Matrix Factorization thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">ML</span>
+          <h3>SVD &amp; Matrix Factorization</h3>
+          <p>A hybrid R pipeline combining SVD, graph analytics, and ML models (regression, neural nets, CNN prototypes) for crop-yield prediction and heterotic-pattern discovery.</p>
+          <div class="chiprow"><span class="chip">R</span><span class="chip">SVD</span><span class="chip">neuralnet</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">SVD_application</span></summary>
+        <pre class="hl" data-lang="r"><code>index &lt;- sample(1:nrow(data),round(0.75*nrow(data)))
+train &lt;- data[index,]
+test &lt;- data[-index,]
+lm.fit &lt;- glm(YIELD~., data=train)
+summary(lm.fit)
+pr.lm &lt;- predict(lm.fit,test) #error
+MSE.lm &lt;- sum((pr.lm - test$medv)^2)/nrow(test)
+nn=neuralnet(f,train,hidden = 3,linear.output = TRUE)
+m &lt;- model.matrix(~ YEAR + INBRED_CLUSTER + TESTER_CLUSTER + YIELD,
+                  data = train
+)
+r &lt;- neuralnet(
+  YIELD~abs(INBRED_CLUSTER-TESTER_CLUSTER),
+  data=m, hidden=10, threshold=0.01
+)
+f &lt;- as.formula(paste(&quot;YIELD~&quot;, paste(n[!n %in% &quot;YIELD&quot;], collapse = &quot; + &quot;)))
+nn=neuralnet(f,train,hidden = 3,linear.output = TRUE)
+
+Predict=compute(nn,test)
+predictions &lt;- data.frame(Predict$net.result)
+
+nn=neuralnet(YIELD~.,train,hidden = 20,linear.output = TRUE,act.fct = &#x27;ReLu&#x27;)
+plot(nn)
+Predict=compute(nn,test)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/svd-ml-experiments" target="_blank" rel="noopener">github.com/sayaneshome/svd-ml-experiments &nbsp;↗</a>
+        </div>
+      </article>
+    </div>
+  </details>
+  <details class="pgroup">
+    <summary class="gsub"><span class="chev" aria-hidden="true">›</span><span class="glabel">Single-cell &amp; Multi-omics</span><span class="gcount mono">02 projects</span><span class="gline"></span></summary>
+    <div class="grid">
+      <article class="card cat-omics">
+        <a class="thumb" href="https://github.com/sayaneshome/MitoOmics" target="_blank" rel="noopener">
+          <img src="assets/img/projects/MitoOmics.svg" alt="MitoOmics — Mitochondrial Health Pipeline thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">OMICS</span>
+          <h3>MitoOmics — Mitochondrial Health Pipeline</h3>
+          <p>An end-to-end, pip-installable pipeline (CLI + GPU/RAPIDS, published on PyPI) that quantifies a Mitochondrial Health Index by integrating EV/MDV proteomics with single-cell RNA-seq — scoring mitochondrial programs (biogenesis, fusion/fission, mitophagy, heterogeneity) against MitoCarta 3.0, then combining them into subject- and cell-type-level MHI with PCA/UMAP embeddings and an auto-generated report. Team lead, NVIDIA Accelerate Omics Hackathon.</p>
+          <div class="chiprow"><span class="chip">Pipeline</span><span class="chip">RAPIDS GPU</span><span class="chip">Multi-omics</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">mitoomics_gpu/mhi.py</span></summary>
+        <pre class="hl" data-lang="python"><code>def combine_components(
+    subject_df: pd.DataFrame,
+    weights=DEFAULT_WEIGHTS,
+    fit_ridge: bool = False,
+    targets: pd.Series | None = None,
+) -&gt; pd.DataFrame:
+    df = subject_df.copy().set_index(&quot;subject_id&quot;)
+
+    cols = [
+        c for c in [&quot;copy_number&quot;, &quot;fusion_fission&quot;, &quot;mitophagy&quot;, &quot;heterogeneity&quot;]
+        if c in df.columns
+    ]
+    if not cols:
+        raise ValueError(
+            &quot;No components to combine. Need at least one of: &quot;
+            &quot;copy_number, fusion_fission, mitophagy, heterogeneity.&quot;
+        )
+
+    X = df[cols].apply(_scale01)
+
+    if fit_ridge and targets is not None:
+        y = targets.reindex(X.index)
+        # pandas 2.x: use .ffill()/.bfill() not fillna(method=...)
+        y = y.ffill().bfill().fillna(y.mean())
+        model = RidgeCV(alphas=[0.1, 1.0, 10.0], cv=min(5, len(X)))
+        model.fit(X.values, y.values)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/MitoOmics" target="_blank" rel="noopener">github.com/sayaneshome/MitoOmics &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-omics">
+        <a class="thumb" href="https://github.com/sayaneshome/atopic-dermatitis" target="_blank" rel="noopener">
+          <img src="assets/img/projects/atopic-dermatitis.svg" alt="Atopic Dermatitis — CD4 T-cell Perturb-seq thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">OMICS</span>
+          <h3>Atopic Dermatitis — CD4 T-cell Perturb-seq</h3>
+          <p>Analysis of a published CD4⁺ T-cell Perturb-seq (CRISPR) screen from the Marson lab: a 16-dimensional autoencoder compresses each perturbation and a gradient-boosted classifier predicts Th2-collapse, surfacing regulators of atopic-dermatitis phenotypes.</p>
+          <div class="chiprow"><span class="chip">Perturb-seq</span><span class="chip">Autoencoder</span><span class="chip">Gradient boosting</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">pipeline/run_th2_screen.py</span></summary>
+        <pre class="hl" data-lang="python"><code>def build_axis(f, obs, zscore, anchor, fdr=0.10):
+    &quot;&quot;&quot;Consensus stim z-vector + informative (anchor-DE) subspace mask.&quot;&quot;&quot;
+    rows = {c: ridx(obs, anchor, c) for c in STIM}
+    rows = {c: i for c, i in rows.items() if i is not None}
+    axis_z = np.vstack([zscore[i] for i in rows.values()]).mean(0)
+    sig = np.zeros(zscore.shape[1], bool)
+    for c, i in rows.items():
+        sig |= (f[&quot;layers&quot;][&quot;adj_p_value&quot;][i].astype(np.float32) &lt; fdr)
+    return axis_z, sig
+
+
+def phenocopy(query_z, axis_z, sig):
+    q = np.atleast_2d(query_z)[:, sig].astype(np.float64)
+    a = axis_z[sig].astype(np.float64)
+    cos = (q / (np.linalg.norm(q, axis=1, keepdims=True) + 1e-9)) @ (a / (np.linalg.norm(a) + 1e-9))
+    return cos
+
+
+# ---------- screen ----------
+def run(h5ad, out):
+    os.makedirs(out, exist_ok=True)
+    f, obs, gname, gids, Z = load_de(h5ad)
+    obs[&quot;eligible&quot;] = eligible_mask(obs)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/atopic-dermatitis" target="_blank" rel="noopener">github.com/sayaneshome/atopic-dermatitis &nbsp;↗</a>
+        </div>
+      </article>
+    </div>
+  </details>
+  <details class="pgroup">
+    <summary class="gsub"><span class="chev" aria-hidden="true">›</span><span class="glabel">Publication &amp; Research Code</span><span class="gcount mono">03 projects</span><span class="gline"></span></summary>
+    <div class="grid">
+      <article class="card cat-ms">
+        <a class="thumb" href="https://github.com/sayaneshome/Sp3_manuscript" target="_blank" rel="noopener">
+          <img src="assets/img/projects/Sp3_manuscript.svg" alt="Sp3 Manuscript Code thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">PAPER</span>
+          <h3>Sp3 Manuscript Code</h3>
+          <p>Bulk RNA-seq analysis for my first-author Sp3 manuscript (in submission): DESeq2 differential expression with an interaction design, transcription-factor motif enrichment, GO/GSEA, and a machine-learning analysis of how TFs shape target-gene expression — across MEF and LMC cell types.</p>
+          <div class="chiprow"><span class="chip">DESeq2</span><span class="chip">TF motifs</span><span class="chip">ML</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">bioinformatics/differential_expression/2025_LMC_final_manuscript_svg_and_full_analyses.ipynb</span></summary>
+        <pre class="hl" data-lang="python"><code>create_lollipop_plot &lt;- function(data, orientation = &quot;vertical&quot;) {
+  p &lt;- ggplot(data, aes(x = Gene_name)) +
+    geom_segment(aes(xend = Gene_name, y = log2FoldChange_I, yend = log2FoldChange_II), col = &quot;grey&quot;) +
+    geom_point(aes(y = log2FoldChange_I), color = &#x27;black&#x27;, size = 7, stroke = 0.5, shape = 21, fill = &#x27;#ff9288&#x27;) +  # Specify shape and fill for a border
+    geom_point(aes(y = log2FoldChange_II), color = &#x27;black&#x27;, size = 7, stroke = 0.5, shape = 21, fill = &#x27;#96cb01&#x27;) + # Specify shape and fill for a border
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(angle = ifelse(orientation == &quot;vertical&quot;, 90, 0), hjust = 1, vjust = 0.5, size = 9),  # Adjust font size and angle for x-axis
+      axis.text.y = element_text(size = ifelse(orientation == &quot;vertical&quot;, 7, 10)),  # Adjust font size for y-axis
+      axis.ticks.length = unit(0.05, &quot;cm&quot;), # Adjust the length of ticks to reduce space
+      axis.line = element_line(size = 0.2),   # Makes axis lines thicker
+      panel.grid.major = element_blank(),    # Removes major grid lines
+      panel.grid.minor = element_blank(),    # Removes minor grid lines
+      plot.title = element_text(size = 14, face = &quot;bold&quot;),
+      plot.margin = if (orientation == &quot;horizontal&quot;) margin(0.1, 0.1, 0.1, 0.1, &quot;cm&quot;) else margin(2, 1, 2, 1, &quot;cm&quot;) # Increase margins around the plot
+    ) +
+    labs(x = &quot;Gene&quot;, y = &quot;Log2 Fold Change&quot;, title = &quot;Increase in Log2 Fold Changes&quot;) +
+    scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)))  # Reduce gaps between x-axis labels
+
+  if (orientation == &quot;horizontal&quot;) {
+    p &lt;- p + coord_flip()  # Flip coordinates for horizontal plot
+  }
+
+  return(p)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/Sp3_manuscript" target="_blank" rel="noopener">github.com/sayaneshome/Sp3_manuscript &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-ms">
+        <a class="thumb" href="https://github.com/sayaneshome/Abgt_transporters_manuscript_supporting_code" target="_blank" rel="noopener">
+          <img src="assets/img/projects/Abgt_transporters_manuscript_supporting_code.svg" alt="AbgT Transporters thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">PAPER</span>
+          <h3>AbgT Transporters</h3>
+          <p>Supporting code for my AbgT membrane-transporter drug-efflux paper (JCIM, 2021): steered-MD (SMD) trajectories, mean-square-fluctuation and interaction-energy (GRINN) analysis, and figures for the YdaH/MtrF systems.</p>
+          <div class="chiprow"><span class="chip">steered MD</span><span class="chip">GRINN</span><span class="chip">R</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">Codes/Analysis_for_figures/MSF_calculation_script.R</span></summary>
+        <pre class="hl" data-lang="r"><code>#Obtained the protein conformations at different timesteps and used Prody software to obtain
+#mean square fluctuations of dimer and monomeric unit of MtrF and YdaH respectively.
+#Further,computed the Fold-Change using the following script
+
+library(bio3d)
+ydah_conf1_monomer &lt;- read.table(&#x27;Ydah_monomer_minimised_conf1_full_CA_gnm_sqfluct.txt&#x27;)
+ydah_conf1_dimer &lt;- read.table(&#x27;Ydah_dimer_minimised_conf1_full_CA_gnm_sqfluct.txt&#x27;)
+ydah_conf2_dimer &lt;- read.table(&#x27;Ydah_dimer_minimised_conf2_full_CA_gnm_sqfluct.txt&#x27;)
+ydah_conf2_monomer &lt;- read.table(&#x27;Ydah_monomer_minimised_conf2_full_CA_gnm_sqfluct.txt&#x27;)
+ydah_conf1 &lt;- cbind(ydah_conf1_dimer[1:476,],ydah_conf1_monomer)
+ydah_conf2 &lt;- cbind(ydah_conf2_dimer[1:476,],ydah_conf2_monomer)
+ydah_conf1$FoldChange &lt;- ydah_conf1$`ydah_conf1_dimer[1:476, ]`/ydah_conf1$V1
+ydah_conf2$FoldChange &lt;- ydah_conf2$`ydah_conf2_dimer[1:476, ]`/ydah_conf2$V1
+colnames(ydah_conf1)[1] &lt;- &quot;MSF_values_Dimer&quot;
+colnames(ydah_conf1)[2] &lt;- &quot;MSF_values_Monomer&quot;
+ydah_conf1$residue_position &lt;- rownames(ydah_conf1)
+colnames(ydah_conf2)[1] &lt;- &quot;MSF_values_Dimer&quot;
+colnames(ydah_conf2)[2] &lt;- &quot;MSF_values_Monomer&quot;
+ydah_conf2$residue_position &lt;- rownames(ydah_conf2)
+ydah_conf1$residue_position &lt;- rownames(ydah_conf1)
+write.csv(ydah_conf1,&#x27;ydah_conf1_results.csv&#x27;)
+write.csv(ydah_conf2,&#x27;ydah_conf2_results.csv&#x27;)
+
+mtrf_conf1_monomer &lt;- read.table(&#x27;Mtrf_monomer_minimised_conf1_full_CA_gnm_sqfluct.txt&#x27;)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/Abgt_transporters_manuscript_supporting_code" target="_blank" rel="noopener">github.com/sayaneshome/Abgt_transporters_manuscript_supporting_code &nbsp;↗</a>
+        </div>
+      </article>
+      <article class="card cat-tool">
+        <a class="thumb" href="https://github.com/sayaneshome/Shell_scripts_research" target="_blank" rel="noopener">
+          <img src="assets/img/projects/Shell_scripts_research.svg" alt="Research Shell Scripts thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">TOOLS</span>
+          <h3>Research Shell Scripts</h3>
+          <p>Reusable UNIX/R utilities for research: FASTA handling, BLAST parsing, FASTQ read statistics, kallisto transcript quantification, and molecular-dynamics trajectory analysis.</p>
+          <div class="chiprow"><span class="chip">Bash</span><span class="chip">kallisto</span><span class="chip">BLAST</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">MD_trajectory_Datanalysis.R</span></summary>
+        <pre class="hl" data-lang="r"><code>setwd(&#x27;/Users/sayaneshome/Desktop/log_files/&#x27;)
+table1 &lt;- read.delim(&#x27;ydah_d180_smd.dat&#x27;,sep =&quot; &quot;)
+table2 &lt;- read.delim(&#x27;ydah_native_trial8_1_dipl.dat&#x27;,sep =&quot; &quot;)
+table3 &lt;- read.delim(&#x27;ydah_r426_smd01.dat&#x27;,sep =&quot; &quot;)
+table4 &lt;- read.delim(&#x27;ydah_w400_smd01.dat&#x27;,sep =&quot; &quot;)
+View(table1)
+table1 &lt;- subset(table1[1:20000,])
+table4 &lt;- subset(table4[1:20000,])
+View(table1)
+table1$X.1 &lt;- NULL
+table2$X.1 &lt;- NULL
+table3$X.1 &lt;- NULL
+table4$X.1 &lt;- NULL
+table4$X &lt;- NULL
+table3$X &lt;- NULL
+table2$X &lt;- NULL
+table1$X &lt;- NULL
+View(table1)
+
+names(table1) &lt;- c(&#x27;time&#x27;,&#x27;position&#x27;,&#x27;force&#x27;)
+names(table2) &lt;- c(&#x27;time&#x27;,&#x27;position&#x27;,&#x27;force&#x27;)
+names(table3) &lt;- c(&#x27;time&#x27;,&#x27;position&#x27;,&#x27;force&#x27;)
+names(table4) &lt;- c(&#x27;time&#x27;,&#x27;position&#x27;,&#x27;force&#x27;)
+View(table1)</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/Shell_scripts_research" target="_blank" rel="noopener">github.com/sayaneshome/Shell_scripts_research &nbsp;↗</a>
+        </div>
+      </article>
+    </div>
+  </details>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="shead"><span class="num">02</span><h2>Experience</h2><span class="line"></span></div>
+  
+      <div class="xrow">
+        <div class="xmeta mono"><span class="xwhen">2026 — Present</span><span class="xorg">UC San Francisco</span></div>
+        <div class="xbody"><h3>Bioinformatics Programmer 3</h3><div class="xdept">Dept. of HIV, Infectious Diseases &amp; Global Medicine</div><p>Lead single-cell, multi-omics, and Perturb-seq analysis across ~1,000-patient and <em>All of Us</em> cohorts to uncover mechanisms and biomarkers of HIV infection and treatment response.</p></div>
+      </div>
+      <div class="xrow">
+        <div class="xmeta mono"><span class="xwhen">2021 — 2025</span><span class="xorg">Stanford University</span></div>
+        <div class="xbody"><h3>Postdoctoral Fellow</h3><div class="xdept">Dept. of Anesthesia &amp; Pediatrics</div><p>Built ML and generative-AI models on single-cell, Hi-C, and EHR data (~34,000 infants), characterizing the Sp3 transcription factor in lung development and bronchopulmonary dysplasia.</p></div>
+      </div>
+      <div class="xrow">
+        <div class="xmeta mono"><span class="xwhen">2016 — 2021</span><span class="xorg">Iowa State University</span></div>
+        <div class="xbody"><h3>Research Assistant</h3><div class="xdept">Biochemistry, Biophysics &amp; Molecular Biology</div><p>Protein sequence/structure modeling, molecular-dynamics simulation, co-evolutionary methods, gene annotation, and miRNA expression analysis.</p></div>
+      </div>
+</div></section>
+
+<section id="publications"><div class="wrap">
+  <div class="shead"><span class="num">03</span><h2>Selected Publications</h2><span class="line"></span></div>
+  <ol class="pubs">
+      <li class="pub">
+        <span class="pn mono">01</span>
+        <div>
+          <div class="pt">A machine-learning approach to leveraging electronic health records for enhanced omics analysis<span class="natflag">Nature</span></div>
+          <div class="pv mono">Mataraso, Espinosa, Seong, Berson, <b>Shome</b>, et al. · <span class="venue">Nature Machine Intelligence</span> 7(2):293–306, 2025</div>
+        </div>
+      </li>
+      <li class="pub">
+        <span class="pn mono">02</span>
+        <div>
+          <div class="pt">Large-scale correlation-network construction for unraveling the coordination of complex biological systems<span class="natflag">Nature</span></div>
+          <div class="pv mono">Becker, Espinosa, Stelzer, <b>Shome</b>, et al. · <span class="venue">Nature Computational Science</span> 3:346–359, 2023</div>
+        </div>
+      </li>
+      <li class="pub">
+        <span class="pn mono">03</span>
+        <div>
+          <div class="pt">Sp3 is essential for normal lung morphogenesis and cell-cycle progression during mouse embryonic development</div>
+          <div class="pv mono">McCoy, Lakhdari, <b>Shome</b>, et al. · <span class="venue">Development</span> 150(5):dev200839, 2023</div>
+        </div>
+      </li>
+      <li class="pub">
+        <span class="pn mono">04</span>
+        <div>
+          <div class="pt">Characterizing interactions in E-cadherin assemblages</div>
+          <div class="pv mono"><b>Shome</b>, Jia, Sivasankar, Jernigan · <span class="venue">Biophysical Journal</span> 122(15):3069–3077, 2023</div>
+        </div>
+      </li>
+      <li class="pub">
+        <span class="pn mono">05</span>
+        <div>
+          <div class="pt">Non-coding RNA in raw and commercially processed milk and putative targets related to growth and immune response</div>
+          <div class="pv mono"><b>Shome</b>, Jernigan, Beitz, Clark, Testroet · <span class="venue">BMC Genomics</span> 22:749, 2021</div>
+        </div>
+      </li>
+      <li class="pub">
+        <span class="pn mono">06</span>
+        <div>
+          <div class="pt">Simulated drug efflux for the AbgT family of membrane transporters</div>
+          <div class="pv mono"><b>Shome</b>, Sankar, Jernigan · <span class="venue">J. Chem. Inf. Model.</span> 61(11):5673–5681, 2021</div>
+        </div>
+      </li>
+  </ol>
+  <p class="scholar"><b>418</b> citations · h-index <b>11</b> · i10-index <b>12</b> · <a href="https://scholar.google.com/citations?user=GSKXU68AAAAJ" target="_blank" rel="noopener" style="color:var(--accent)">full list on Google Scholar ↗</a></p>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="shead"><span class="num">04</span><h2>What I Work With</h2><span class="line"></span></div>
+  <div class="srow"><div class="sk mono">Single-cell &amp; Multi-omics</div><div class="sv">scRNA-seq · scATAC-seq · Perturb-seq · Visium · Hi-C · Scanpy · Seurat · scVI · scVelo · CellChat</div></div><div class="srow"><div class="sk mono">Machine Learning</div><div class="sv">XGBoost · random forest · mixed-effects &amp; network models · scikit-learn · PyTorch · TensorFlow</div></div><div class="srow"><div class="sk mono">Generative &amp; Foundation</div><div class="sv">Diffusion models · GANs · LLMs · protein language models · vision-language (BLIP-2) · YOLOv8</div></div><div class="srow"><div class="sk mono">Programming</div><div class="sv">Python · R / Bioconductor · SQL · Bash · reproducible, version-controlled workflows</div></div><div class="srow"><div class="sk mono">Cloud &amp; HPC</div><div class="sv">AWS · GCP · HPC clusters · CUDA · Docker · Singularity · Git</div></div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2>Get in touch.</h2>
+  <p>Open to computational-biology and ML roles in biotech &amp; pharma.</p>
+  <div class="cta" style="justify-content:center">
+    <a class="btn primary" href="mailto:sayaneshome1@gmail.com">Email me</a>
+    <a class="btn" href="https://github.com/sayaneshome" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn" href="https://www.linkedin.com/in/sayaneshome" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn" href="https://scholar.google.com/citations?user=GSKXU68AAAAJ" target="_blank" rel="noopener">Scholar ↗</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto">
+  <span>© Sayane Shome, Ph.D.</span><span>San Francisco Bay Area</span>
+</div></footer>
+
+<script>
+// theme toggle
+(function(){
+  var r=document.documentElement,b=document.getElementById('tgl');
+  try{var s=localStorage.getItem('t');if(s)r.setAttribute('data-theme',s);}catch(e){}
+  b.onclick=function(){
+    var cur=r.getAttribute('data-theme')||'dark';
+    var n=cur==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+    try{localStorage.setItem('t',n);}catch(e){}
+  };
+})();
+
+// lightweight syntax highlighter (self-contained)
+(function(){
+  var KW=/\b(def|class|return|import|from|for|if|else|elif|while|function|library|require|in|as|with|lambda|None|True|False|and|or|not|print|self|for|in)\b/g;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function hl(t){
+    var RX=/(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(\d+\.?\d*)\b|\b(def|class|return|import|from|for|if|elif|else|while|function|library|require|as|with|lambda|None|True|False|and|or|not|print|self)\b|([A-Za-z_][A-Za-z0-9_.]*)(?=\s*\()/gm;
+    var out='',last=0,m;
+    while((m=RX.exec(t))){
+      out+=esc(t.slice(last,m.index));
+      if(m[1])out+='<span class="tok-c">'+esc(m[1])+'</span>';
+      else if(m[2])out+='<span class="tok-s">'+esc(m[2])+'</span>';
+      else if(m[3])out+='<span class="tok-n">'+esc(m[3])+'</span>';
+      else if(m[4])out+='<span class="tok-k">'+esc(m[4])+'</span>';
+      else if(m[5])out+='<span class="tok-f">'+esc(m[5])+'</span>';
+      last=RX.lastIndex;
+    }
+    out+=esc(t.slice(last));
+    return out;
+  }
+  document.querySelectorAll('pre.hl code').forEach(function(c){c.innerHTML=hl(c.textContent);});
+})();
+
+// hero scatter field (UMAP-like), reduced-motion aware
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var cv=document.getElementById('field'),ctx=cv.getContext('2d'),W,H,pts=[];
+  var COL=['#8E8CF5','#B08CF2','#6E9BF5','#C7A2E6'];
+  function size(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;}
+  function init(){
+    size();pts=[];var n=Math.min(70,Math.floor(W*H/38000));
+    for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*.12*devicePixelRatio,vy:(Math.random()-.5)*.12*devicePixelRatio,
+      c:COL[i%4],r:(1+Math.random()*1.6)*devicePixelRatio});
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i];p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      for(var j=i+1;j<pts.length;j++){
+        var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy),m=140*devicePixelRatio;
+        if(d<m){ctx.strokeStyle=p.c;ctx.globalAlpha=(1-d/m)*.12;ctx.lineWidth=devicePixelRatio;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+      }
+    }
+    for(var k=0;k<pts.length;k++){var p2=pts[k];ctx.globalAlpha=.7;ctx.fillStyle=p2.c;
+      ctx.beginPath();ctx.arc(p2.x,p2.y,p2.r,0,7);ctx.fill();}
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  }
+  init();draw();addEventListener('resize',init);
+})();
+</script>
+</body>
+</html>
