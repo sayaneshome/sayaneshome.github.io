@@ -180,7 +180,7 @@ footer{padding:30px 0;border-top:1px solid var(--line);font-family:var(--mono);f
     <div class="herotext">
     <p class="eyebrow">AI × Bio · Computational Biologist</p>
     <h1>My work,<br>in code.</h1>
-    <p class="sub">A portfolio of the pipelines and models I've built — machine learning, single-cell &amp; multi-omics, medical imaging, generative AI, and computational biophysics. Every project links to its repository and shows a real code excerpt.</p>
+    <p class="sub">A portfolio of the pipelines and models I've built — AI evaluation &amp; RL environments for biomedical data, machine learning, single-cell &amp; multi-omics, medical imaging, generative AI, and computational biophysics. Every project links to its repository and shows a real code excerpt.</p>
     </div>
     <img class="headshot" src="assets/img/profile.jpg" alt="Sayane Shome, Ph.D." width="230" height="230">
    </div>
@@ -202,8 +202,48 @@ footer{padding:30px 0;border-top:1px solid var(--line);font-family:var(--mono);f
 <main>
 <section id="projects"><div class="wrap">
   <div class="shead"><h2>Projects</h2><span class="line"></span></div>
-  <p class="lead">Public repositories grouped by theme so it's clear what I build: <b>machine learning &amp; AI</b>, <b>computer vision &amp; medical imaging</b>, <b>single-cell &amp; multi-omics pipelines</b>, <b>computational biophysics</b>, and the <b>analysis code behind my publications</b> — plus a side project. Every card links to the repo and expands a real code excerpt.</p>
+  <p class="lead">Public repositories grouped by theme so it's clear what I build: <b>AI evaluation &amp; RL environments for biomedical data</b>, <b>machine learning &amp; AI</b>, <b>computer vision &amp; medical imaging</b>, <b>single-cell &amp; multi-omics pipelines</b>, <b>computational biophysics</b>, and the <b>analysis code behind my publications</b> — plus a side project. Every card links to the repo and expands a real code excerpt.</p>
   
+  <details class="pgroup" open>
+    <summary class="gsub"><span class="chev" aria-hidden="true">›</span><span class="glabel">AI Evaluation &amp; RL Environments</span><span class="gcount mono">01 project</span><span class="gline"></span></summary>
+    <div class="grid">
+      <article class="card cat-ml">
+        <a class="thumb" href="https://github.com/sayaneshome/bio-rl-environments" target="_blank" rel="noopener">
+          <img src="assets/img/projects/bio-rl-environments.svg" alt="Bio RL Environments thumbnail" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">RL / EVALS</span>
+          <h3>Bio RL Environments — dbGaP &amp; GTEx</h3>
+          <p>Agentic RL environments and benchmarks for biomedical data work, built on open data. The dbGaP benchmark asks an AI agent to harmonize phenotypes across 29 cohort studies, scored against real TOPMed curator decisions with a role-scored grader. On the hardest version, Claude Opus 5.5 and Fable 5.2 pass narrowly (0.72–0.73), Sonnet 5.5 (0.65) and Haiku 5.5 (0.46) fail, and none finds the curators' data-cleaning variables. Three GTEx RNA-seq environments (sample provenance, confounded differential expression, contamination deconvolution) serve as training gyms with planted ground truth.</p>
+          <div class="chiprow"><span class="chip">dbGaP</span><span class="chip">GTEx</span><span class="chip">AI evaluation</span><span class="chip">Claude</span></div>
+      <details class="code">
+        <summary><span class="mono">&lt;/&gt; view code</span><span class="mono path">dbgap/builders/grade3.py</span></summary>
+        <pre class="hl" data-lang="python"><code>def score_pair(c, k, sub):
+    &quot;&quot;&quot;Role-scored grade for one phenotype-cohort pair:
+    0.2 age + 0.5 measurement + 0.3 supporting (modifier + selector).&quot;&quot;&quot;
+    got = {r: set() for r in ROLES}
+    for x in (sub or {}).get(&quot;variables&quot;, []):
+        v, r = str(x.get(&quot;id&quot;, &quot;&quot;)).split(&quot;.&quot;)[0], x.get(&quot;role&quot;, &quot;measurement&quot;)
+        if v in c.index and r in got:
+            got[r].add(v)
+    # measurement: half for the right source tables, half for the exact variables
+    km = set(k[&quot;measurement&quot;])
+    if k[&quot;constant&quot;]:
+        sm = 1.0 if (sub or {}).get(&quot;constant&quot;) and not got[&quot;measurement&quot;] else 0.0
+    else:
+        kt = {c.at[v, &quot;table_id&quot;] for v in km}
+        pt = {c.at[v, &quot;table_id&quot;] for v in got[&quot;measurement&quot;]}
+        sm = 0.5 * J(kt, pt) + 0.5 * J(km, got[&quot;measurement&quot;])
+    # supporting: the curators&#x27; correction, screening and selection variables
+    ks = set(k[&quot;modifier&quot;]) | set(k[&quot;selector&quot;])
+    ps = got[&quot;modifier&quot;] | got[&quot;selector&quot;]</code></pre>
+      </details>
+          <a class="ghlink mono" href="https://github.com/sayaneshome/bio-rl-environments" target="_blank" rel="noopener">github.com/sayaneshome/bio-rl-environments &nbsp;↗</a>
+        </div>
+      </article>
+    </div>
+  </details>
+
   <details class="pgroup">
     <summary class="gsub"><span class="chev" aria-hidden="true">›</span><span class="glabel">Machine Learning &amp; AI</span><span class="gcount mono">03 projects</span><span class="gline"></span></summary>
     <div class="grid">
